@@ -22,9 +22,19 @@ $(window).on("scroll", function (evt) {
     $header.parent().css({ borderBottom: "none" });
   }
 
-  if (lastScroll > scrollTop) {
+  if (lastScroll > scrollTop) { 
+    //스크롤 올릴 때
     $header.slideDown(200);
-  } else {
+
+    $upperCard.css({ top: 170 })
+    $underCard.css({ top: 170 })
+
+  } else { 
+    //스크롤 내릴 때
+
+    $upperCard.css({ top: 100 })
+    $underCard.css({ top: 100 })
+
     if (scrollTop < $tit.offset().top) {
       $header.slideDown(200);
     } else {
@@ -38,41 +48,8 @@ $(window).on("scroll", function (evt) {
     $todaysKaKao.slideUp(200);
   }
 
-  /*카드 스크롤 효과*/
-
-  cardScroll($upperCard);
-  cardScroll($underCard);
-
   lastScroll = scrollTop;
 });
-
-const cardScroll = function (card) {
-  const mainTop = card.parent().offset().top;
-  const mainBottom = mainTop + card.parent().outerHeight();
-  let position;
-
-  const positionTop = function (position) {
-    card.css({ top: position });
-  };
-
-  if (scrollTop + 100 < mainTop) {
-    position = 0;
-    positionTop(position);
-  } else if (
-    scrollTop + 100 > mainTop &&
-    scrollTop + 100 < mainBottom - card.outerHeight()
-  ) {
-    if (lastScroll > scrollTop) {
-      position = scrollTop + 170 - mainTop;
-    } else {
-      position = scrollTop + 100 - mainTop;
-    }
-    positionTop(position);
-  } else if (scrollTop + 100 > mainBottom - card.outerHeight()) {
-    position = card.parent().outerHeight() - card.outerHeight() - 34;
-    positionTop(position);
-  }
-};
 
 const getDate = function () {
   const $nav = $("header>.container>nav>.gnb>li");

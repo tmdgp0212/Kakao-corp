@@ -229,9 +229,9 @@ header>.todays-kakao-top>h2{
 }
 
 .contents>.board>.main>.main-card{
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* position: absolute; */
+    position: sticky;
+    top: 100px;
     width: 100%;
     box-sizing: border-box;
 }
